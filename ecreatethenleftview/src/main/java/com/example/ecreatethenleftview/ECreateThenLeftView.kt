@@ -37,6 +37,9 @@ fun Canvas.drawECreateThenLeft(scale : Float, w : Float, h : Float, paint : Pain
     val sc2 : Float = scale.divideScale(1, parts)
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
+    if (sc1 <= 0f || sc4 >= 1) {
+        return
+    }
     save()
     translate(w / 2 - (w / 2 + size) * sc4, h / 2)
     rotate(-rot * sc4)
@@ -45,13 +48,14 @@ fun Canvas.drawECreateThenLeft(scale : Float, w : Float, h : Float, paint : Pain
         scale(1f, 1f - 2 * j)
         for (k in 0..1) {
             save()
-            rotate(deg * sc2)
-            drawLine(0f, 0f, 0f, size * 0.5f * sc1, paint)
+            translate(0f, size * 0.5f * sc1)
+            rotate(deg * sc2 * k)
+            drawLine(0f, -size * 0.5f * sc1, 0f, 0f, paint)
             restore()
         }
         restore()
     }
-    drawLine(0f, 0f, size * 0.25f * sc3, 0f, paint)
+    drawLine(0f, 0f, size * 0.4f * sc3, 0f, paint)
     restore()
 }
 
