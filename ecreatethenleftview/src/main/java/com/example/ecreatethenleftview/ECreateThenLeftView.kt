@@ -215,4 +215,13 @@ class ECreateThenLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ECreateThenLeftView {
+            val view : ECreateThenLeftView = ECreateThenLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
